@@ -27,7 +27,6 @@ export default function SeatMap({ layoutType, seats, seatAssignments, activePass
         <span className="sm-nose-text">Front of aircraft</span>
       </div>
 
-      {/* Legend strip - always visible, sticky */}
       <div className="sm-legend-strip">
         <Sw cls="lsw-free" label="Free" /><Sw cls="lsw-standard" label="Standard" />
         <Sw cls="lsw-premium" label="Premium" /><Sw cls="lsw-legroom" label="Extra legroom" />

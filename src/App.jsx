@@ -5,7 +5,6 @@ import FlightPicker from './components/FlightPicker'
 import PassengerBar from './components/PassengerBar'
 import SeatMap from './components/SeatMap'
 import BookingSummary from './components/BookingSummary'
-import MealSelection from './components/MealSelection'
 import Toast, { useToast } from './components/Toast'
 import './App.css'
 
@@ -39,16 +38,15 @@ export default function App() {
       <Header flight={b.selectedFlight} />
       <div className="page">
         <FlightPicker selectedFlight={b.selectedFlight} onSelect={handleFlightSelect} />
-
         <div className="seat-section" ref={seatRef}>
           <div className="seat-grid">
             <div className="seat-main">
               <PassengerBar
                 passengers={b.passengers} activeId={b.activeId}
-                passengerCount={b.passengerCount} seatMap={b.seatMap}
-                layoutType={b.layoutType}
+                passengerCount={b.passengerCount} maxPassengers={b.maxPassengers}
+                seatMap={b.seatMap} layoutType={b.layoutType}
                 onSelect={b.setActiveId} onCountChange={b.updateCount}
-                onLayoutChange={handleLayoutChange}
+                onLayoutChange={handleLayoutChange} onUpdatePassenger={b.updatePassenger}
               />
               <SeatMap
                 layoutType={b.layoutType} seats={b.seats}
@@ -61,7 +59,6 @@ export default function App() {
                 passengers={b.passengers} seatMap={b.seatMap}
                 totals={b.totals} onRemoveSeat={b.removeSeat}
               />
-              <MealSelection passengers={b.passengers} onSelectMeal={b.setMeal} />
             </div>
           </div>
         </div>

@@ -5,10 +5,8 @@ import '../styles/BookingSummary.css'
 export default function BookingSummary({ passengers, seatMap, totals, onRemoveSeat }) {
   const hasMeals = passengers.some(p => p.mealId !== 'none')
   const allSeated = passengers.every(p => p.seatId)
-
-  // Promo state
   const [promoInput, setPromoInput] = useState('')
-  const [promoStatus, setPromoStatus] = useState('idle') // idle | applied | invalid | below
+  const [promoStatus, setPromoStatus] = useState('idle') 
   const [showDrop, setShowDrop] = useState(false)
   const dropRef = useRef(null)
 
@@ -17,14 +15,12 @@ export default function BookingSummary({ passengers, seatMap, totals, onRemoveSe
   const grandTotal = subtotal - discount
   const gap = PROMO_MIN - subtotal
 
-  // Close dropdown on outside click
   useEffect(() => {
     const handler = (e) => { if (dropRef.current && !dropRef.current.contains(e.target)) setShowDrop(false) }
     document.addEventListener('mousedown', handler)
     return () => document.removeEventListener('mousedown', handler)
   }, [])
 
-  // Re-evaluate promo when subtotal changes
   useEffect(() => {
     if (promoStatus === 'applied' && subtotal < PROMO_MIN) setPromoStatus('below')
     if (promoStatus === 'below' && subtotal >= PROMO_MIN && promoInput.toUpperCase() === PROMO_CODE) setPromoStatus('applied')

@@ -2,7 +2,7 @@ import { useState, useCallback, useMemo } from 'react'
 import { generateSeats, MEALS, FLIGHTS } from '../data/seats'
 
 function createPassenger(id) {
-  return { id, name: `Passenger ${id}`, seatId: null, mealId: 'none' }
+  return { id, name: `Passenger ${id}`, age: '', seatId: null, mealId: 'none' }
 }
 
 export default function useBooking() {
@@ -14,6 +14,7 @@ export default function useBooking() {
 
   const seats = useMemo(() => generateSeats(layoutType), [layoutType])
   const seatMap = useMemo(() => { const m = {}; seats.forEach(s => { m[s.id] = s }); return m }, [seats])
+  const maxPassengers = useMemo(() => seats.filter(s => !s.occupied).length, [seats])
 
   const seatAssignments = useMemo(() => {
     const map = {}
@@ -37,7 +38,7 @@ export default function useBooking() {
 
   const updateCount = useCallback((delta) => {
     setPassengerCount(prev => {
-      const next = Math.max(1, Math.min(6, prev + delta))
+      const next = Math.max(1, Math.min(maxPassengers, prev + delta))
       setPassengers(prevPax => {
         if (next > prevPax.length) {
           const added = []
@@ -49,7 +50,7 @@ export default function useBooking() {
       setActiveId(aid => aid > next ? next : aid)
       return next
     })
-  }, [])
+  }, [maxPassengers])
 
   const assignSeat = useCallback((seat) => {
     setPassengers(prev => prev.map(p => {
@@ -71,7 +72,10 @@ export default function useBooking() {
     setPassengers(prev => prev.map(p => p.id === paxId ? { ...p, mealId } : p))
   }, [])
 
-  // Only seat + meal prices, no base fare
+  const updatePassenger = useCallback((paxId, data) => {
+    setPassengers(prev => prev.map(p => p.id === paxId ? { ...p, ...data } : p))
+  }, [])
+
   const totals = useMemo(() => {
     let seatTotal = 0, mealTotal = 0
     passengers.forEach(p => {
@@ -85,8 +89,8 @@ export default function useBooking() {
   return {
     selectedFlight, selectFlight,
     layoutType, switchLayout,
-    passengerCount, passengers, activeId,
+    passengerCount, maxPassengers, passengers, activeId,
     seats, seatMap, seatAssignments, totals,
-    setActiveId, updateCount, assignSeat, checkConflict, removeSeat, setMeal,
+    setActiveId, updateCount, assignSeat, checkConflict, removeSeat, setMeal, updatePassenger,
   }
 }

@@ -2,7 +2,7 @@
 
 A flight seat selection interface built with React.js where users can select passengers, choose seats from two aircraft configurations, pick meals, and see a live total.
 
-**Live demo:** [Deployed link]
+**Live demo:** (https://flight-seat-selector-bhumis-projects-1b21f385.vercel.app/)
 
 ---
 

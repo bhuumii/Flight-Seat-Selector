@@ -1,0 +1,32 @@
+.flights-section { animation: fade-in 0.3s ease; }
+.section-label { font-size: 14px; font-weight: 700; color: var(--text); margin-bottom: 12px; }
+.flights-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 12px; }
+.flight-card {
+  position: relative; background: var(--surface); border: 1.5px solid var(--border);
+  border-radius: var(--radius-lg); padding: 16px 18px; text-align: left;
+  transition: border-color 0.2s, box-shadow 0.2s, transform 0.15s; overflow: hidden;
+}
+.flight-card:hover { border-color: var(--primary); box-shadow: var(--shadow-md); transform: translateY(-2px); }
+.flight-card-active { border-color: var(--primary); background: var(--primary-lighter); box-shadow: 0 0 0 3px var(--primary-light); }
+.fc-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; }
+.fc-id { font-size: 12px; font-weight: 700; color: var(--primary); background: var(--primary-light); padding: 2px 8px; border-radius: 4px; }
+.fc-layout { font-size: 11px; color: var(--text-dim); font-weight: 500; }
+.fc-times { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-bottom: 14px; }
+.fc-time-block { text-align: center; }
+.fc-time { display: block; font-size: 22px; font-weight: 800; letter-spacing: -0.02em; color: var(--text); line-height: 1.1; }
+.fc-code { display: block; font-size: 11px; font-weight: 600; color: var(--text-dim); margin-top: 2px; }
+.fc-dur { display: flex; align-items: center; gap: 6px; flex: 1; }
+.fc-dur-line { flex: 1; height: 1px; background: var(--border); }
+.fc-dur-text { font-size: 11px; color: var(--text-dim); white-space: nowrap; font-weight: 500; }
+.fc-bottom {
+  display: flex; align-items: center; justify-content: space-between;
+  padding-top: 12px; border-top: 1px solid var(--border-light);
+  font-size: 12px; color: var(--text-muted); font-weight: 500;
+}
+.fc-nonstop { color: var(--green); font-weight: 600; font-size: 11px; }
+.fc-check {
+  position: absolute; top: 10px; right: 10px;
+  width: 22px; height: 22px; background: var(--primary); color: #fff;
+  border-radius: 50%; font-size: 12px; display: flex; align-items: center; justify-content: center;
+  animation: pulse-once 0.3s ease;
+}

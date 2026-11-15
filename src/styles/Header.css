@@ -1,0 +1,57 @@
+.header {
+  background: var(--header-bg);
+  color: #fff;
+  position: sticky;
+  top: 0;
+  z-index: 20;
+}
+.header-inner {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0 28px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.brand-icon {
+  width: 30px;
+  height: 30px;
+  background: var(--primary);
+  color: #fff;
+  font-weight: 800;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-sm);
+}
+.brand-name {
+  font-weight: 700;
+  font-size: 17px;
+  letter-spacing: -0.02em;
+}
+.header-nav { display: flex; align-items: center; gap: 24px; }
+
+.header-route {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 500;
+  color: rgba(255,255,255,0.75);
+}
+.route-city { font-weight: 700; color: #fff; font-size: 14px; letter-spacing: 0.04em; }
+.route-line { width: 28px; height: 1px; background: rgba(255,255,255,0.25); }
+.route-plane { color: rgba(255,255,255,0.5); }
+.route-date { margin-left: 6px; font-size: 12px; opacity: 0.5; }
+
+@media (max-width: 600px) {
+  .header-inner { padding: 0 16px; height: 50px; }
+  .route-date { display: none; }
+}

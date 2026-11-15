@@ -108,10 +108,11 @@ export default function BookingSummary({ passengers, seatMap, totals, onRemoveSe
               </button>
               {showDrop && (
                 <div className="promo-dropdown">
-                  <button className="promo-option" onClick={() => selectPromo(PROMO_CODE)}>
-                    <span className="promo-opt-code">{PROMO_CODE}</span>
-                    <span className="promo-opt-desc">10% off on orders above {'\u20B9'}999</span>
-                  </button>
+                 <button className="promo-option" onClick={() => selectPromo(PROMO_CODE)}>
+                   <span className="promo-opt-code">{PROMO_CODE}</span>
+                   <span className="promo-opt-desc">10% off on orders above {'\u20B9'}999</span>
+                   <span className="promo-opt-tc">T&C: Valid on orders above {'\u20B9'}999. 10% off on total seat and meal charges. Cannot be combined with other offers.</span>
+                </button>
                 </div>
               )}
             </div>
@@ -131,7 +132,6 @@ export default function BookingSummary({ passengers, seatMap, totals, onRemoveSe
           {promoStatus === 'below' && (
             <div className="promo-msg promo-warn">Cart value is below {'\u20B9'}999. Add {formatPrice(Math.max(0, gap))} more to apply this coupon</div>
           )}
-          <div className="promo-tc">T&C: Valid on orders above {'\u20B9'}999. 10% off on total seat and meal charges. Cannot be combined with other offers.</div>
         </div>
 
         {/* Totals */}

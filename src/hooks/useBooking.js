@@ -76,6 +76,22 @@ export default function useBooking() {
     setPassengers(prev => prev.map(p => p.id === paxId ? { ...p, ...data } : p))
   }, [])
 
+  const deletePassenger = useCallback((paxId) => {
+   setPassengers(prev => {
+    if (prev.length <= 1) return prev
+    const filtered = prev.filter(p => p.id !== paxId)
+    return filtered.map((p, i) => {
+      if (/^Passenger \d+$/.test(p.name)) {
+        return { ...p, name: `Passenger ${i + 1}` }
+      }
+      return p
+    })
+   })
+   setPassengerCount(prev => Math.max(1, prev - 1))
+   setActiveId(aid => aid === paxId ? null : aid)
+  }, [])
+   
+
   const totals = useMemo(() => {
     let seatTotal = 0, mealTotal = 0
     passengers.forEach(p => {
@@ -91,6 +107,6 @@ export default function useBooking() {
     layoutType, switchLayout,
     passengerCount, maxPassengers, passengers, activeId,
     seats, seatMap, seatAssignments, totals,
-    setActiveId, updateCount, assignSeat, checkConflict, removeSeat, setMeal, updatePassenger,
+    setActiveId, updateCount, assignSeat, checkConflict, removeSeat, setMeal, updatePassenger, deletePassenger,
   }
 }

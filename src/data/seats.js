@@ -30,11 +30,11 @@ export function generateSeats(layoutType) {
 }
 
 export const MEALS = [
-  { id: 'none', name: 'No meal', desc: '', price: 0 },
-  { id: 'veg', name: 'Veg thali', desc: 'Rice, dal, paneer, roti, salad', price: 0 },
-  { id: 'nonveg', name: 'Chicken biryani', desc: 'Hyderabadi biryani with raita', price: 200 },
-  { id: 'gourmet', name: 'Gourmet platter', desc: 'Grilled chicken, pasta, chocolate mousse', price: 400 },
-  { id: 'snack', name: 'Snack box', desc: 'Sandwich, chips, cookie, juice', price: 150 },
+  { id: 'none', name: 'No meal', desc: '', price: 0, type: null },
+  { id: 'veg', name: 'Veg thali', desc: 'Rice, dal, paneer, roti, salad', price: 0, type: 'veg' },
+  { id: 'nonveg', name: 'Chicken biryani', desc: 'Hyderabadi biryani with raita', price: 200, type: 'nonveg' },
+  { id: 'gourmet', name: 'Gourmet platter', desc: 'Grilled chicken, pasta, chocolate mousse', price: 400, type: 'nonveg' },
+  { id: 'snack', name: 'Snack box', desc: 'Sandwich, chips, cookie, juice', price: 150, type: 'veg' },
 ]
 
 export const PROMO_CODE = '10OFFOVER999'

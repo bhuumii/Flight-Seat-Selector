@@ -68,6 +68,10 @@ export default function BookingSummary({ passengers, seatMap, totals, onRemoveSe
           })}
         </div>
 
+       {!hasMeals && (
+          <div className="sum-hint">Edit any passenger to add meals</div>
+        )}
+
         {/* Meals */}
         {hasMeals && (
           <div className="sum-group">
@@ -78,7 +82,7 @@ export default function BookingSummary({ passengers, seatMap, totals, onRemoveSe
                 <div key={p.id} className="sum-row">
                   <span className="sum-label">{p.name}</span>
                   <span className="sum-val-group">
-                    <span className="sum-meal">{meal.name}</span>
+                    <span className="sum-meal">{meal.type && <span className={`food-dot food-dot-sm ${meal.type}`} />}{meal.name}</span>
                     <span className="sum-val">{formatPrice(meal.price)}</span>
                   </span>
                 </div>
@@ -106,8 +110,8 @@ export default function BookingSummary({ passengers, seatMap, totals, onRemoveSe
                 <div className="promo-dropdown">
                  <button className="promo-option" onClick={() => selectPromo(PROMO_CODE)}>
                    <span className="promo-opt-code">{PROMO_CODE}</span>
-                   <span className="promo-opt-desc">10% off on orders above {'\u20B9'}999</span>
-                   <span className="promo-opt-tc">T&C: Valid on orders above {'\u20B9'}999. 10% off on total seat and meal charges. Cannot be combined with other offers.</span>
+                   <span className="promo-opt-desc">10% off on tickets above {'\u20B9'}999</span>
+                   <span className="promo-opt-tc">T&C: Valid on tickets above {'\u20B9'}999. 10% off on total seat and meal charges. Cannot be combined with other offers.</span>
                 </button>
                 </div>
               )}

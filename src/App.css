@@ -21,3 +21,29 @@
   .seat-sidebar { position: static; }
   .page { padding: 16px 16px 40px; }
 }
+
+.cdlg-overlay {
+  position: fixed; inset: 0; background: rgba(0,0,0,0.35); z-index: 60;
+  display: flex; align-items: center; justify-content: center; padding: 20px;
+  animation: fade-in 0.15s ease;
+}
+.cdlg {
+  background: var(--surface); border-radius: var(--radius-lg); padding: 24px;
+  width: 100%; max-width: 380px; box-shadow: var(--shadow-lg);
+  animation: slide-up 0.2s ease;
+}
+.cdlg-msg {
+  font-size: 14px; font-weight: 500; color: var(--text); line-height: 1.5; margin-bottom: 20px;
+}
+.cdlg-actions { display: flex; gap: 10px; justify-content: flex-end; }
+.cdlg-cancel {
+  padding: 8px 18px; border-radius: var(--radius); font-size: 13px; font-weight: 600;
+  border: 1.5px solid var(--border); background: var(--surface); color: var(--text-muted);
+  transition: background 0.12s, border-color 0.12s;
+}
+.cdlg-cancel:hover { background: var(--surface-hover); border-color: var(--text-dim); }
+.cdlg-ok {
+  padding: 8px 18px; border-radius: var(--radius); font-size: 13px; font-weight: 600;
+  background: var(--primary); color: #fff; transition: background 0.15s, transform 0.1s;
+}
+.cdlg-ok:hover { background: var(--primary-hover); transform: translateY(-1px); }

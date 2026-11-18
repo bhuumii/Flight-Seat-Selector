@@ -1,15 +1,18 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { LAYOUT_CONFIGS, MEALS, formatPrice } from '../data/seats'
 import '../styles/PassengerBar.css'
 
 export default function PassengerBar({
   passengers, activeId, passengerCount, maxPassengers, seatMap, layoutType,
-  onSelect, onCountChange, onLayoutChange, onUpdatePassenger
+  onSelect, onCountChange, onLayoutChange, onUpdatePassenger, onDeletePassenger
 }) {
   const [editPax, setEditPax] = useState(null)
   const [editName, setEditName] = useState('')
   const [editAge, setEditAge] = useState('')
   const [editMeal, setEditMeal] = useState('none')
+    useEffect(() => {
+    if (editPax && !passengers.find(p => p.id === editPax.id)) setEditPax(null)
+  }, [passengers, editPax])
 
   const openEdit = (p, e) => {
     e.stopPropagation()
@@ -55,7 +58,7 @@ export default function PassengerBar({
           const active = p.id === activeId
           const meal = MEALS.find(m => m.id === p.mealId)
           return (
-            <button key={p.id} className={`pchip ${active ? 'pchip-active' : ''}`} onClick={() => onSelect(p.id)}>
+            <button key={p.id} className={`pchip ${active ? 'pchip-active' : ''}`} onClick={(e) => { e.stopPropagation(); onSelect(p.id) }}>
               <span className="pchip-dot" />
               <div className="pchip-info">
                 <span className="pchip-name">
@@ -104,7 +107,7 @@ export default function PassengerBar({
                     <button key={meal.id} className={`pm-meal ${editMeal === meal.id ? 'pm-meal-on' : ''}`} onClick={() => setEditMeal(meal.id)}>
                       <span className="pm-radio"><span className="pm-dot" /></span>
                       <span className="pm-meal-info">
-                        <span className="pm-meal-name">{meal.name}</span>
+                        <span className="pm-meal-name">{meal.type && <span className={`food-dot ${meal.type}`} />}{meal.name}</span>
                         {meal.desc && <span className="pm-meal-desc">{meal.desc}</span>}
                       </span>
                       <span className="pm-meal-price">{formatPrice(meal.price)}</span>
@@ -115,6 +118,11 @@ export default function PassengerBar({
             </div>
             <div className="pmodal-footer">
               <button className="pmodal-save" onClick={saveEdit}>Save details</button>
+              {passengers.length > 1 && (
+                <button className="pmodal-delete" onClick={() => onDeletePassenger(editPax.id)}>
+                  Remove this passenger
+                </button>
+              )}
             </div>
           </div>
         </div>

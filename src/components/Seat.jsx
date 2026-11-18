@@ -26,7 +26,13 @@ export default function Seat({ seat, assignment, isActiveSelected, onClick }) {
   else cls += ' s-standard'
   if (justSelected) cls += ' s-pulse'
 
-  const label = isActiveSelected ? seat.id : assignment ? `P${assignment.paxNum}` : ''
+  const label = isActiveSelected
+    ? seat.id
+    : assignment
+      ? `P${assignment.paxNum}`
+      : ''
+
+  const tipBelow = seat.row <= 2
 
   return (
     <button
@@ -39,7 +45,7 @@ export default function Seat({ seat, assignment, isActiveSelected, onClick }) {
     >
       <span className="s-label">{label}</span>
       {hovered && !seat.occupied && (
-        <div className="s-tip">
+        <div className={`s-tip ${tipBelow ? 's-tip-below' : ''}`}>
           <strong>{seat.id}</strong> {categoryLabel(seat.category)} - {formatPrice(seat.price)}
         </div>
       )}

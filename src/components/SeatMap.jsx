@@ -33,7 +33,7 @@ export default function SeatMap({ layoutType, seats, seatAssignments, activePass
         <Sw cls="lsw-selected" label="Your pick" /><Sw cls="lsw-occupied" label="Taken" />
       </div>
 
-      <div className="sm-body">
+      <div className="sm-body" onClick={e => e.stopPropagation()}>
         <div className="sm-scroll">
           <div className="sm-row sm-row-header">{headerCells}</div>
           {rows.map(rn => {

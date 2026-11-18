@@ -12,7 +12,7 @@ A flight seat selection interface built with React.js. Users choose a flight, se
 - **Two seat layouts** - switch between 3-2 (regional jet) and 2-3-2 (wide-body) configurations using a toggle
 - **Dynamic passenger count** - add passengers up to the number of available (non-occupied) seats
 - **Seat assignment** - click a seat to assign it to the active passenger; click again to deselect
-- **Passenger editing** - click the pencil icon on any passenger to edit their name, age, and meal preference in a popup
+- **Passenger editing** - click the pencil icon on any passenger to edit their name, age, and meal preference in a popup, or remove them from the booking
 - **Visual seat states** - six distinct styles: free, standard, premium, extra legroom, selected, and occupied
 - **Live pricing** - total updates instantly as seats and meals change
 - **Promo code** - dropdown with available codes, validates minimum cart value, shows discount in summary
